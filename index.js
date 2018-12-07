@@ -3,6 +3,10 @@ const mongodb = require('mongodb');
 
 var app = express();
 
+app.get('/hello', function (req, res) {
+    res.send("Hallo " + (req.query.name || 'Anyone'));
+});
+
 app.get('/', function (req, res) {
 
     var MongoClient = mongodb.MongoClient;
