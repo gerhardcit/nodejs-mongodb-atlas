@@ -3,15 +3,15 @@ const mongodb = require('mongodb');
 
 var app = express();
 
-app.get('/hello', function (req, res) {
-    res.send("Hallo " + (req.query.name || 'Anyone'));
+app.get('/', function (req, res) {
+    res.send("Hello " + (req.query.name || 'Anyone'));
 });
 
-app.get('/', function (req, res) {
+app.get('/db', function (req, res) {
 
     var MongoClient = mongodb.MongoClient;
     var uri = process.env.MONGO_DB_CONNECTION;
-    MongoClient.connect(uri, function (err, db) {
+    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         db.close();
         if (err) {
             res.send(err);
