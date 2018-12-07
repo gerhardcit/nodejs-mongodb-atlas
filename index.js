@@ -7,10 +7,19 @@ app.get('/', function (req, res) {
     res.send("Hello " + (req.query.name || 'Anyone'));
 });
 
-app.get('/db', function (req, res) {
+app.get('/connect-short', function (req, res) {
+    var uri = process.env.MONGO_DB_CONNECTION_SHORT;
+    connect(req, res, uri);
+});
 
+app.get('/connect-long', function (req, res) {
+    var uri = process.env.MONGO_DB_CONNECTION_LONG;
+    connect(req, res, uri);
+});
+
+function connect(req, res, uri) {
     var MongoClient = mongodb.MongoClient;
-    var uri = process.env.MONGO_DB_CONNECTION;
+    var uri = uri;
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if (err) {
             res.send(err);
@@ -19,8 +28,7 @@ app.get('/db', function (req, res) {
             res.send("Connected success");
         }
     });
-
-});
+}
 
 var port = process.env.PORT || 1337;
 var server = app.listen(port, function () {
