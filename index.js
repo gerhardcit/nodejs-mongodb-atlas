@@ -12,10 +12,10 @@ app.get('/db', function (req, res) {
     var MongoClient = mongodb.MongoClient;
     var uri = process.env.MONGO_DB_CONNECTION;
     MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
-        db.close();
         if (err) {
             res.send(err);
         } else {
+            db.close();
             res.send("Connected success");
         }
     });
