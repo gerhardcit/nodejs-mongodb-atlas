@@ -18,11 +18,9 @@ app.get('/connect-long', function (req, res) {
 });
 
 function connect(req, res, uri) {
-    var MongoClient = mongodb.MongoClient;
-    var uri = uri;
-    MongoClient.connect(uri, { useNewUrlParser: true }, function (err, db) {
+    mongodb.connect(uri, { useNewUrlParser: true }, function (err, db) {
         if (err) {
-            res.send(err);
+            res.json(err);
         } else {
             db.close();
             res.send("Connected success");

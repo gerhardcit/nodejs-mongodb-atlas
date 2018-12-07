@@ -1,6 +1,6 @@
-# Node.js Hello World
+# Node.js Connect to MongoDB Atlas
 
-This sample demonstrates a tiny Hello World node.js app for [App Service Web App](https://docs.microsoft.com/azure/app-service-web).
+This sample demonstrates connecting to MongoDB Atlas with the long and short version of the connection strings;
 
 # Contributing
 
